@@ -1,23 +1,23 @@
 class Triangle
-  attr_accessor :side1, :side2, :side3
+  attr_accessor :a, :b, :c
 
-  def initialize(side1, side2, side3)
-    @side1 = side1
-    @side2 = side2
-    @side3 = side3
+  def initialize(a, b, c)
+    @a = a
+    @b = b
+    @c = c
   end
 
-  def kind # && side1 + side2 > side3 || side1 + side3 > side2 || side2 + side3 > side1
-    if side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1
+  def kind
+    if a + b <= c || a + c <= b || b + c <= a
       raise TriangleError
-    elsif side1 <= 0 || side2 <= 0 || side3 <= 0
+    elsif a <= 0 || b <= 0 || c <= 0
       raise TriangleError
     else
-      if side1 == side2 && side1 == side3
+      if a == b && a == c
         :equilateral
-      elsif side1 == side2 && side1 != side3 || side2 == side3 && side1 != side3 || side1 == side3 && side1 != side2
+      elsif a == b && a != c || b == c && a != c || a == c && a != b
         :isosceles
-      elsif side1 != side2 && side1 != side3 && side2 != side3
+      elsif a != b && a != c && b != c
         :scalene
       end
     end
